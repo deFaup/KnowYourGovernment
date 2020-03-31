@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KnowYourGovernment</string>
+
+
+    <!-- About -->
+    <string name="copyright">©2020, Gregoire de Faup</string>
+    <string name="version">Version 1.0</string>
+
+</resources>

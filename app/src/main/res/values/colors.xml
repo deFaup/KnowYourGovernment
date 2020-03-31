@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#456200EE</color>      <!-- color of action bar -->
+    <color name="colorPrimaryDark">#C43700B3</color>  <!-- color of notification bar -->
+    <color name="colorAccent">#03DAC5</color>       <!-- color of specific area such as underlining, to give accentuation -->
+</resources>
+

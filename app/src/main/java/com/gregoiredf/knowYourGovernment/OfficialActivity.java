@@ -168,19 +168,40 @@ public class OfficialActivity extends AppCompatActivity
             }
         }
 
-
+        /* Set background color and clickable logo depending on the political party */
         if (officialParty.getText().toString().contains("Democratic"))
         {
+            officialLogo.setVisibility(View.VISIBLE);
+            officialLogo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(getString(R.string.democratsUrl)));
+                    startActivity(intent);
+                }
+            });
             scrollView.setBackgroundColor(Color.BLUE);
             officialLogo.setImageDrawable(getDrawable(R.drawable.dem_logo));
         }
         else if (officialParty.getText().toString().contains("Republican"))
         {
+            officialLogo.setVisibility(View.VISIBLE);
+            officialLogo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(getString(R.string.republicansUrl)));
+                    startActivity(intent);
+                }
+            });
             scrollView.setBackgroundColor(Color.RED);
             officialLogo.setImageDrawable(getDrawable(R.drawable.rep_logo));
         }
         else
+        {
+            officialLogo.setVisibility(View.GONE);
             scrollView.setBackgroundColor(Color.BLACK);
+        }
     }
 
     private void setOfficialPortrait(final String imageURL)

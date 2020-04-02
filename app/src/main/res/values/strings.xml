@@ -6,4 +6,7 @@
     <string name="copyright">©2020, Gregoire de Faup</string>
     <string name="version">Version 1.0</string>
 
+    <string name="democratsUrl">https://democrats.org/</string>
+    <string name="republicansUrl">https://gop.com/</string>
+
 </resources>

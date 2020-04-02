@@ -207,16 +207,20 @@ public class OfficialActivity extends AppCompatActivity
     private void setOfficialPortrait(final String imageURL)
     {
         this.imageURL = imageURL;
-
+        
         if (imageURL == null)
         {
             officialPortrait.setImageDrawable(getDrawable(R.drawable.missing));
             return;
         }
-
-        picasso.load(imageURL).error(R.drawable.missing)
+        if (MainActivity.appHasNetwork(this))
+            picasso.load(imageURL).error(R.drawable.missing)
                 .placeholder(R.drawable.placeholder)
                 .into(officialPortrait);
+        else
+            picasso.load(imageURL).error(R.drawable.brokenimage)
+                    .placeholder(R.drawable.placeholder)
+                    .into(officialPortrait);
     }
 
     public void imageButtonClick(View v)

@@ -36,9 +36,14 @@ public class PhotoDetailActivity extends AppCompatActivity
             photoDetailName.setText(thisOffice.getOfficialName());
 
             Picasso picasso = new Picasso.Builder(this).build();
-            picasso.load(thisOffice.getImageURL()).error(R.drawable.missing)
-                    .placeholder(R.drawable.placeholder)
-                    .into(photoDetailPhoto);
+            if (MainActivity.appHasNetwork(this))
+                picasso.load(thisOffice.getImageURL()).error(R.drawable.missing)
+                        .placeholder(R.drawable.placeholder)
+                        .into(photoDetailPhoto);
+            else
+                picasso.load(thisOffice.getImageURL()).error(R.drawable.brokenimage)
+                        .placeholder(R.drawable.placeholder)
+                        .into(photoDetailPhoto);
 
             String party = thisOffice.getParty();
             if (party.contains("Democratic Party"))

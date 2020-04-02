@@ -21,9 +21,7 @@ import java.util.HashMap;
 
 public class OfficialActivity extends AppCompatActivity
 {
-    private ScrollView scrollView;
-    private TextView officialLocation, officialOffice, officialName, officialParty;
-    private ImageView officialPortrait, officialLogo;
+    private ImageView officialPortrait;
     private String imageURL;
     private Picasso picasso;
 
@@ -33,13 +31,13 @@ public class OfficialActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_official);
 
-        scrollView = findViewById(R.id.officialScrollView);
-        officialLocation = findViewById(R.id.officialLocation);
-        officialName = findViewById(R.id.officialName);
-        officialOffice = findViewById(R.id.officialOffice);
-        officialParty = findViewById(R.id.officialParty);
+        ScrollView scrollView = findViewById(R.id.officialScrollView);
+        TextView officialLocation = findViewById(R.id.officialLocation);
+        TextView officialName = findViewById(R.id.officialName);
+        TextView officialOffice = findViewById(R.id.officialOffice);
+        TextView officialParty = findViewById(R.id.officialParty);
         officialPortrait = findViewById(R.id.officialPortrait);
-        officialLogo = findViewById(R.id.officialLogo);
+        ImageView officialLogo = findViewById(R.id.officialLogo);
 
         picasso = new Picasso.Builder(this).build();
 

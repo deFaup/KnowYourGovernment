@@ -14,22 +14,18 @@ import com.squareup.picasso.Picasso;
 
 public class PhotoDetailActivity extends AppCompatActivity
 {
-    private ConstraintLayout photoDetailLayout;
-    private ImageView photoDetailPhoto, photoDetailLogo;
-    private TextView photoDetailLocation, photoDetailOffice, photoDetailName;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_detail);
 
-        photoDetailLayout  =findViewById(R.id.photoDetailLayout);
-        photoDetailPhoto  =findViewById(R.id.photoDetailPortrait);
-        photoDetailLogo  =findViewById(R.id.photoDetailLogo);
-        photoDetailLocation  =findViewById(R.id.photoDetailLocation);
-        photoDetailOffice  =findViewById(R.id.photoDetailOffice);
-        photoDetailName  =findViewById(R.id.photoDetailName);
+        ConstraintLayout photoDetailLayout = findViewById(R.id.photoDetailLayout);
+        ImageView photoDetailPhoto = findViewById(R.id.photoDetailPortrait);
+        ImageView photoDetailLogo = findViewById(R.id.photoDetailLogo);
+        TextView photoDetailLocation = findViewById(R.id.photoDetailLocation);
+        TextView photoDetailOffice = findViewById(R.id.photoDetailOffice);
+        TextView photoDetailName = findViewById(R.id.photoDetailName);
 
         Intent intent = getIntent();
         if (intent.hasExtra(Intent.ACTION_ATTACH_DATA))

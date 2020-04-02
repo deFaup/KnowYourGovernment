@@ -207,10 +207,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**** Handler ****/
-    private boolean appHasNetwork()
+    public static boolean appHasNetwork(Context context)
     {
         ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static int MY_LOCATION_REQUEST_CODE_ID = 329;
     private void downloadRepresentatives(String location)
     {
-        if (appHasNetwork())
+        if (appHasNetwork(this))
             new AsyncCivicDownload(this, officesList, location).execute();
         else noNetworkDialog();
     }

@@ -32,7 +32,8 @@ public class PhotoDetailActivity extends AppCompatActivity
         photoDetailName  =findViewById(R.id.photoDetailName);
 
         Intent intent = getIntent();
-        if (intent.hasExtra(Intent.ACTION_ATTACH_DATA)) {
+        if (intent.hasExtra(Intent.ACTION_ATTACH_DATA))
+        {
             Office thisOffice = (Office) intent.getSerializableExtra(Intent.ACTION_ATTACH_DATA);
             photoDetailLocation.setText(intent.getStringExtra("IntentLocation"));
             photoDetailOffice.setText(thisOffice.getOfficeName());
@@ -44,13 +45,17 @@ public class PhotoDetailActivity extends AppCompatActivity
                     .into(photoDetailPhoto);
 
             String party = thisOffice.getParty();
-            if (party.equals("Democratic Party")) {
+            if (party.contains("Democratic Party"))
+            {
                 photoDetailLayout.setBackgroundColor(Color.BLUE);
                 photoDetailLogo.setImageDrawable(getDrawable(R.drawable.dem_logo));
-            } else if (party.equals("Republican Party")) {
+            }
+            else if (party.contains("Republican Party"))
+            {
                 photoDetailLayout.setBackgroundColor(Color.RED);
                 photoDetailLogo.setImageDrawable(getDrawable(R.drawable.rep_logo));
-            } else
+            }
+            else
                 photoDetailLayout.setBackgroundColor(Color.BLACK);
         }
     }

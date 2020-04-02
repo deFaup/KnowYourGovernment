@@ -171,12 +171,12 @@ public class OfficialActivity extends AppCompatActivity
         }
 
 
-        if (officialParty.getText().toString().equals("Democratic Party"))
+        if (officialParty.getText().toString().contains("Democratic"))
         {
             scrollView.setBackgroundColor(Color.BLUE);
             officialLogo.setImageDrawable(getDrawable(R.drawable.dem_logo));
         }
-        else if (officialParty.getText().toString().equals("Republican Party"))
+        else if (officialParty.getText().toString().contains("Republican"))
         {
             scrollView.setBackgroundColor(Color.RED);
             officialLogo.setImageDrawable(getDrawable(R.drawable.rep_logo));

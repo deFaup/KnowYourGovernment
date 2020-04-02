@@ -25,9 +25,11 @@ public class OfficialActivity extends AppCompatActivity
     private TextView officialLocation, officialOffice, officialName, officialParty;
     private ImageView officialPortrait, officialLogo;
     private String imageURL;
+    private Picasso picasso;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_official);
 
@@ -38,6 +40,8 @@ public class OfficialActivity extends AppCompatActivity
         officialParty = findViewById(R.id.officialParty);
         officialPortrait = findViewById(R.id.officialPortrait);
         officialLogo = findViewById(R.id.officialLogo);
+
+        picasso = new Picasso.Builder(this).build();
 
         Intent intent = getIntent();
         if (intent.hasExtra("IntentLocation"))
@@ -181,15 +185,16 @@ public class OfficialActivity extends AppCompatActivity
             scrollView.setBackgroundColor(Color.BLACK);
     }
 
-    private void setOfficialPortrait(final String imageURL) {
+    private void setOfficialPortrait(final String imageURL)
+    {
         this.imageURL = imageURL;
 
-        if (imageURL == null) {
+        if (imageURL == null)
+        {
             officialPortrait.setImageDrawable(getDrawable(R.drawable.missing));
             return;
         }
 
-        Picasso picasso = new Picasso.Builder(this).build();
         picasso.load(imageURL).error(R.drawable.missing)
                 .placeholder(R.drawable.placeholder)
                 .into(officialPortrait);

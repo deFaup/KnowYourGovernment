@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**** Handler ****/
-    public static boolean appHasNetwork(Context context)
+    static boolean appHasNetwork(Context context)
     {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

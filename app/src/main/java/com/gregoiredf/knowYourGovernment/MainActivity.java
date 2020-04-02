@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         String location = "null";
         // if we have location authorization then we try to get the position back
-            // but if location service was not turned on by the user then we load nothing
+            // but if location service was not turned on by the user then location = "null"
         // else we load nothing else is equivalent to location==null
         if (appHasLocation())
             location = getLocation();
@@ -219,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else return false;
     }
     private static int MY_LOCATION_REQUEST_CODE_ID = 329;
-
     private void downloadRepresentatives(String location)
     {
         if (appHasNetwork())
@@ -258,17 +257,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         builder.setTitle("Enter a city/state or a zipcode:");
-        //builder.setMessage("Please enter a stock symbol:");
 
         AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-    private void gpsNotOnDialog()
-    {
-        AlertDialog.Builder gpsDialog = new AlertDialog.Builder(this);
-        gpsDialog.setTitle("Turn on Location");
-        gpsDialog.setMessage("Location is necessary to get your position");
-        AlertDialog dialog = gpsDialog.create();
         dialog.show();
     }
 

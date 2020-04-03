@@ -54,118 +54,8 @@ public class OfficialActivity extends AppCompatActivity
             officialParty.setText(thisOffice.getParty());
             setOfficialPortrait(thisOffice.getImageURL());
 
-            /* from here we check all possible extra data and load them if they exist */
-            LinearLayout linearLayout = findViewById(R.id.officialLinearLayout);
-            TextView textView;
-            // address            TextView textView;
-
-            if (thisOffice.getAddress() != null)
-            {
-                textView = new TextView(this);
-                textView.setTextColor(Color.WHITE);
-                textView.setText("Address: \t\t ".concat(thisOffice.getAddress()).concat("\n"));
-                textView.setTextSize(20);
-                Linkify.addLinks(textView, Linkify.MAP_ADDRESSES);
-                linearLayout.addView(textView);
-            }
-            //phone
-            if (thisOffice.getPhone() != null)
-            {
-                textView = new TextView(this);
-                textView.setTextColor(Color.WHITE);
-                textView.setText("Phone: \t\t\t ".concat(thisOffice.getPhone()).concat("\n"));
-                textView.setTextSize(20);
-                Linkify.addLinks(textView, Linkify.PHONE_NUMBERS);
-                linearLayout.addView(textView);
-            }
-            //url
-            if (thisOffice.getUrl() != null)
-            {
-                textView = new TextView(this);
-                textView.setTextColor(Color.WHITE);
-                textView.setText("Website: \t\t ".concat(thisOffice.getUrl()).concat("\n"));
-                textView.setTextSize(20);
-                Linkify.addLinks(textView, Linkify.WEB_URLS);
-                linearLayout.addView(textView);
-            }
-            //email
-            if (thisOffice.getEmail() != null)
-            {
-                textView = new TextView(this);
-                textView.setTextColor(Color.WHITE);
-                textView.setText("Email: \t\t ".concat(thisOffice.getEmail()).concat("\n"));
-                textView.setTextSize(20);
-                Linkify.addLinks(textView, Linkify.EMAIL_ADDRESSES);
-                linearLayout.addView(textView);
-            }
-            //channels
-            if (thisOffice.getChannels() != null)
-            {
-                HashMap<String, String> channels = thisOffice.getChannels();
-                int index = 1;
-                for (String key : channels.keySet())
-                {
-                    ImageView img = null;
-                    switch (index)
-                    {
-                        case 1:
-                            img = findViewById(R.id.channel1);
-                            break;
-                        case 2:
-                            img = findViewById(R.id.channel2);
-                            break;
-                        case 3:
-                            img = findViewById(R.id.channel3);
-                            break;
-                        case 4:
-                            img = findViewById(R.id.channel4);
-                            break;
-                    }
-                    ++index;
-                    final String id = channels.get(key);
-                    switch (key)
-                    {
-                        case "GooglePlus":
-                            img.setImageDrawable(getDrawable(R.drawable.googleplus));
-                            img.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    googlePlusClicked(v, id);
-                                }
-                            });
-                            break;
-                        case "Facebook":
-                            img.setImageDrawable(getDrawable(R.drawable.facebook));
-                            img.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    facebookClicked(v, id);
-                                }
-                            });
-                            break;
-                        case "Twitter":
-                            img.setImageDrawable(getDrawable(R.drawable.twitter));
-                            img.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    twitterClicked(v, id);
-                                }
-                            });
-                            break;
-                        case "YouTube":
-                            img.setImageDrawable(getDrawable(R.drawable.youtube));
-                            img.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    youTubeClicked(v, id);
-                                }
-                            });
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
+            /* Check all possible extra data and load them if they exist */
+            setLinearLayout(thisOffice);
         }
 
         /* Set background color and clickable logo depending on the political party */
@@ -207,7 +97,7 @@ public class OfficialActivity extends AppCompatActivity
     private void setOfficialPortrait(final String imageURL)
     {
         this.imageURL = imageURL;
-        
+
         if (imageURL == null)
         {
             officialPortrait.setImageDrawable(getDrawable(R.drawable.missing));
@@ -221,6 +111,119 @@ public class OfficialActivity extends AppCompatActivity
             picasso.load(imageURL).error(R.drawable.brokenimage)
                     .placeholder(R.drawable.placeholder)
                     .into(officialPortrait);
+    }
+    private void setLinearLayout(Office thisOffice)
+    {
+        LinearLayout linearLayout = findViewById(R.id.officialLinearLayout);
+        TextView textView;
+
+        if (thisOffice.getAddress() != null)
+        {
+            textView = new TextView(this);
+            textView.setTextColor(Color.WHITE);
+            textView.setText("Address: \t\t ".concat(thisOffice.getAddress()).concat("\n"));
+            textView.setTextSize(20);
+            Linkify.addLinks(textView, Linkify.MAP_ADDRESSES);
+            linearLayout.addView(textView);
+        }
+        //phone
+        if (thisOffice.getPhone() != null)
+        {
+            textView = new TextView(this);
+            textView.setTextColor(Color.WHITE);
+            textView.setText("Phone: \t\t\t ".concat(thisOffice.getPhone()).concat("\n"));
+            textView.setTextSize(20);
+            Linkify.addLinks(textView, Linkify.PHONE_NUMBERS);
+            linearLayout.addView(textView);
+        }
+        //url
+        if (thisOffice.getUrl() != null)
+        {
+            textView = new TextView(this);
+            textView.setTextColor(Color.WHITE);
+            textView.setText("Website: \t\t ".concat(thisOffice.getUrl()).concat("\n"));
+            textView.setTextSize(20);
+            Linkify.addLinks(textView, Linkify.WEB_URLS);
+            linearLayout.addView(textView);
+        }
+        //email
+        if (thisOffice.getEmail() != null)
+        {
+            textView = new TextView(this);
+            textView.setTextColor(Color.WHITE);
+            textView.setText("Email: \t\t ".concat(thisOffice.getEmail()).concat("\n"));
+            textView.setTextSize(20);
+            Linkify.addLinks(textView, Linkify.EMAIL_ADDRESSES);
+            linearLayout.addView(textView);
+        }
+        //channels
+        if (thisOffice.getChannels() != null)
+        {
+            HashMap<String, String> channels = thisOffice.getChannels();
+            int index = 1;
+            for (String key : channels.keySet())
+            {
+                ImageView img = null;
+                switch (index)
+                {
+                    case 1:
+                        img = findViewById(R.id.channel1);
+                        break;
+                    case 2:
+                        img = findViewById(R.id.channel2);
+                        break;
+                    case 3:
+                        img = findViewById(R.id.channel3);
+                        break;
+                    case 4:
+                        img = findViewById(R.id.channel4);
+                        break;
+                }
+                ++index;
+                final String id = channels.get(key);
+                switch (key)
+                {
+                    case "GooglePlus":
+                        img.setImageDrawable(getDrawable(R.drawable.googleplus));
+                        img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                googlePlusClicked(v, id);
+                            }
+                        });
+                        break;
+                    case "Facebook":
+                        img.setImageDrawable(getDrawable(R.drawable.facebook));
+                        img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                facebookClicked(v, id);
+                            }
+                        });
+                        break;
+                    case "Twitter":
+                        img.setImageDrawable(getDrawable(R.drawable.twitter));
+                        img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                twitterClicked(v, id);
+                            }
+                        });
+                        break;
+                    case "YouTube":
+                        img.setImageDrawable(getDrawable(R.drawable.youtube));
+                        img.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                youTubeClicked(v, id);
+                            }
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     public void imageButtonClick(View v)
